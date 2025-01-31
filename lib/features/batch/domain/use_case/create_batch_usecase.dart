@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:softwarica_student_management_bloc/app/usecase/usecase.dart';
-import 'package:softwarica_student_management_bloc/core/error/failure.dart';
-import 'package:softwarica_student_management_bloc/features/batch/domain/repository/batch_repository.dart';
-import 'package:softwarica_student_management_bloc/features/batch/domain/entity/batch_entity.dart';
+import 'package:doko_platter/app/usecase/usecase.dart';
+import 'package:doko_platter/core/error/failure.dart';
+import 'package:doko_platter/features/batch/domain/repository/batch_repository.dart';
+import 'package:doko_platter/features/batch/domain/entity/batch_entity.dart';
 
 class CreateBatchParams extends Equatable {
   final String batchName;

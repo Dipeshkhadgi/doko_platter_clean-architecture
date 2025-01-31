@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:softwarica_student_management_bloc/features/batch/domain/entity/batch_entity.dart';
-import 'package:softwarica_student_management_bloc/features/course/domain/entity/course_entity.dart';
+import 'package:doko_platter/features/batch/domain/entity/batch_entity.dart';
+import 'package:doko_platter/features/course/domain/entity/course_entity.dart';
 
 class AuthEntity extends Equatable {
   final String? userId;
@@ -8,8 +8,6 @@ class AuthEntity extends Equatable {
   final String lName;
   final String? image;
   final String phone;
-  final BatchEntity batch;
-  final List<CourseEntity> courses;
   final String username;
   final String password;
 
@@ -19,13 +17,11 @@ class AuthEntity extends Equatable {
     required this.lName,
     this.image,
     required this.phone,
-    required this.batch,
-    required this.courses,
     required this.username,
     required this.password,
   });
 
   @override
   List<Object?> get props =>
-      [userId, fName, lName, image, batch, phone, courses, username, password];
+      [userId, fName, lName, image, phone, username, password];
 }

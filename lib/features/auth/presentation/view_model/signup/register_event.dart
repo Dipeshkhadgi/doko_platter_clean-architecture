@@ -22,8 +22,6 @@ class RegisterStudent extends RegisterEvent {
   final String fName;
   final String lName;
   final String phone;
-  final BatchEntity batch;
-  final List<CourseEntity> courses;
   final String username;
   final String password;
   final String? image;
@@ -33,8 +31,6 @@ class RegisterStudent extends RegisterEvent {
     required this.fName,
     required this.lName,
     required this.phone,
-    required this.batch,
-    required this.courses,
     required this.username,
     required this.password,
     this.image,

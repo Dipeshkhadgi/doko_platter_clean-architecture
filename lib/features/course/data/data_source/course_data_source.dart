@@ -1,4 +1,4 @@
-import 'package:softwarica_student_management_bloc/features/course/domain/entity/course_entity.dart';
+import 'package:doko_platter/features/course/domain/entity/course_entity.dart';
 
 abstract interface class ICourseDataSource {
   Future<List<CourseEntity>> getCourses();

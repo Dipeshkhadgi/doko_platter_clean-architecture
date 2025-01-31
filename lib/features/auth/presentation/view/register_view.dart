@@ -3,15 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:multi_select_flutter/dialog/multi_select_dialog_field.dart';
-import 'package:multi_select_flutter/util/multi_select_item.dart';
-import 'package:multi_select_flutter/util/multi_select_list_type.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:softwarica_student_management_bloc/features/auth/presentation/view_model/signup/register_bloc.dart';
-import 'package:softwarica_student_management_bloc/features/batch/domain/entity/batch_entity.dart';
-import 'package:softwarica_student_management_bloc/features/batch/presentation/view_model/batch_bloc.dart';
-import 'package:softwarica_student_management_bloc/features/course/domain/entity/course_entity.dart';
-import 'package:softwarica_student_management_bloc/features/course/presentation/view_model/course_bloc.dart';
+import 'package:doko_platter/features/auth/presentation/view_model/signup/register_bloc.dart';
+import 'package:doko_platter/features/batch/domain/entity/batch_entity.dart';
+import 'package:doko_platter/features/course/domain/entity/course_entity.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -23,11 +18,13 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   final _gap = const SizedBox(height: 8);
   final _key = GlobalKey<FormState>();
-  final _fnameController = TextEditingController(text: 'kiran');
-  final _lnameController = TextEditingController(text: 'rana');
-  final _phoneController = TextEditingController(text: '123456789');
-  final _usernameController = TextEditingController(text: 'kiran');
-  final _passwordController = TextEditingController(text: 'kiran123');
+
+  // All fields are blank by default
+  final _fnameController = TextEditingController();
+  final _lnameController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   BatchEntity? _dropDownValue;
   final List<CourseEntity> _lstCourseSelected = [];
@@ -52,8 +49,6 @@ class _RegisterViewState extends State<RegisterView> {
                 UploadImage(file: _img!),
               );
         });
-      } else {
-        return;
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -64,8 +59,9 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register Student'),
+        title: const Text('Registration Form'),
         centerTitle: true,
+        backgroundColor: Colors.orange.shade300, // Light orange app bar
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -120,15 +116,15 @@ class _RegisterViewState extends State<RegisterView> {
                         radius: 50,
                         backgroundImage: _img != null
                             ? FileImage(_img!)
-                            : const AssetImage('assets/images/profile.png')
+                            : const AssetImage(
+                                    'assets/images/profile-picture.jpg')
                                 as ImageProvider,
-                        // backgroundImage:
-                        //     const AssetImage('assets/images/profile.png')
-                        //         as ImageProvider,
                       ),
                     ),
                   ),
                   const SizedBox(height: 25),
+
+                  // First Name
                   TextFormField(
                     controller: _fnameController,
                     decoration: const InputDecoration(
@@ -142,6 +138,8 @@ class _RegisterViewState extends State<RegisterView> {
                     }),
                   ),
                   _gap,
+
+                  // Last Name
                   TextFormField(
                     controller: _lnameController,
                     decoration: const InputDecoration(
@@ -155,6 +153,8 @@ class _RegisterViewState extends State<RegisterView> {
                     }),
                   ),
                   _gap,
+
+                  // Phone Number
                   TextFormField(
                     controller: _phoneController,
                     decoration: const InputDecoration(
@@ -162,77 +162,14 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                     validator: ((value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter phoneNo';
+                        return 'Please enter phone number';
                       }
                       return null;
                     }),
                   ),
                   _gap,
-                  BlocBuilder<BatchBloc, BatchState>(builder: (context, state) {
-                    return DropdownButtonFormField<BatchEntity>(
-                      items: state.batches
-                          .map((e) => DropdownMenuItem<BatchEntity>(
-                                value: e,
-                                child: Text(e.batchName),
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        _dropDownValue = value;
-                      },
-                      value: _dropDownValue,
-                      decoration: const InputDecoration(
-                        labelText: 'Select Batch',
-                      ),
-                      validator: ((value) {
-                        if (value == null) {
-                          return 'Please select batch';
-                        }
-                        return null;
-                      }),
-                    );
-                  }),
-                  _gap,
-                  BlocBuilder<CourseBloc, CourseState>(
-                      builder: (context, courseState) {
-                    if (courseState.isLoading) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      return MultiSelectDialogField(
-                        title: const Text('Select course'),
-                        items: courseState.courses
-                            .map(
-                              (course) => MultiSelectItem(
-                                course,
-                                course.courseName,
-                              ),
-                            )
-                            .toList(),
-                        listType: MultiSelectListType.CHIP,
-                        buttonText: const Text(
-                          'Select course',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        buttonIcon: const Icon(Icons.search),
-                        onConfirm: (values) {
-                          _lstCourseSelected.clear();
-                          _lstCourseSelected.addAll(values);
-                        },
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black87,
-                          ),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        validator: ((value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please select courses';
-                          }
-                          return null;
-                        }),
-                      );
-                    }
-                  }),
-                  _gap,
+
+                  // Username
                   TextFormField(
                     controller: _usernameController,
                     decoration: const InputDecoration(
@@ -246,10 +183,12 @@ class _RegisterViewState extends State<RegisterView> {
                     }),
                   ),
                   _gap,
+
+                  // Password
                   TextFormField(
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Password',
                     ),
                     validator: ((value) {
@@ -260,9 +199,15 @@ class _RegisterViewState extends State<RegisterView> {
                     }),
                   ),
                   _gap,
+
+                  // Register Button
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Colors.orange.shade300, // Light orange button
+                      ),
                       onPressed: () {
                         if (_key.currentState!.validate()) {
                           final registerState =
@@ -274,8 +219,6 @@ class _RegisterViewState extends State<RegisterView> {
                                   fName: _fnameController.text,
                                   lName: _lnameController.text,
                                   phone: _phoneController.text,
-                                  batch: _dropDownValue!,
-                                  courses: _lstCourseSelected,
                                   username: _usernameController.text,
                                   password: _passwordController.text,
                                   image: imageName,
@@ -283,7 +226,13 @@ class _RegisterViewState extends State<RegisterView> {
                               );
                         }
                       },
-                      child: const Text('Register'),
+                      child: const Text(
+                        'Register',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
                     ),
                   ),
                 ],

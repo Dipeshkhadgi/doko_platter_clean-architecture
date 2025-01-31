@@ -1,4 +1,4 @@
-package com.student_management_bloc.softwarica_student_management_bloc
+package com.student_management_bloc.doko_platter
 
 import io.flutter.embedding.android.FlutterActivity
 

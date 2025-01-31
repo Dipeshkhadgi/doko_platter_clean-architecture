@@ -1,4 +1,4 @@
-# softwarica_student_management_bloc
+# doko_platter
 
 A new Flutter project.
 

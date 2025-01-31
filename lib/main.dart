@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:softwarica_student_management_bloc/app/app.dart';
-import 'package:softwarica_student_management_bloc/app/di/di.dart';
-import 'package:softwarica_student_management_bloc/core/network/hive_service.dart';
+import 'package:doko_platter/app/app.dart';
+import 'package:doko_platter/app/di/di.dart';
+import 'package:doko_platter/core/network/hive_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

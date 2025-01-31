@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:softwarica_student_management_bloc/features/auth/presentation/view/register_view.dart';
-import 'package:softwarica_student_management_bloc/features/auth/presentation/view_model/login/login_bloc.dart';
+import 'package:doko_platter/features/auth/presentation/view/register_view.dart';
+import 'package:doko_platter/features/auth/presentation/view_model/login/login_bloc.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
 
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController(text: 'kiran');
-  final _passwordController = TextEditingController(text: 'kiran123');
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   final _gap = const SizedBox(height: 8);
 
@@ -21,17 +21,28 @@ class LoginView extends StatelessWidget {
           child: Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
+                    // Logo
+                    Image.asset(
+                      'assets/images/dp-logo.jpg',
+                      height: 100,
+                    ),
+                    const SizedBox(height: 8),
+
+                    // App Name
                     const Text(
-                      'Login',
+                      'Doko Platter',
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
                         fontFamily: 'Brand Bold',
                       ),
                     ),
-                    _gap,
+                    const SizedBox(height: 16),
+
+                    // Username Field
                     TextFormField(
                       key: const ValueKey('username'),
                       controller: _usernameController,
@@ -47,22 +58,30 @@ class LoginView extends StatelessWidget {
                       },
                     ),
                     _gap,
+
+                    // Password Field
                     TextFormField(
                       key: const ValueKey('password'),
                       controller: _passwordController,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
                         labelText: 'Password',
                       ),
-                      validator: ((value) {
+                      validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter password';
                         }
                         return null;
-                      }),
+                      },
                     ),
                     _gap,
+
+                    // Login Button (Light Orange)
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange.shade300,
+                      ),
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           context.read<LoginBloc>().add(
@@ -72,22 +91,6 @@ class LoginView extends StatelessWidget {
                                   password: _passwordController.text,
                                 ),
                               );
-
-                          //   if (_usernameController.text == 'kiran' &&
-                          //       _passwordController.text == 'kiran123') {
-                          //     context.read<LoginBloc>().add(
-                          //           NavigateHomeScreenEvent(
-                          //             destination: HomeView(),
-                          //             context: context,
-                          //           ),
-                          //         );
-                          //   } else {
-                          //     showMySnackBar(
-                          //       context: context,
-                          //       message: 'Invalid username or password',
-                          //       color: Colors.red,
-                          //     );
-                          //   }
                         }
                       },
                       child: const SizedBox(
@@ -98,14 +101,20 @@ class LoginView extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                               fontFamily: 'Brand Bold',
+                              color: Colors.white,
                             ),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    _gap,
+
+                    // Register Button (Light Orange)
                     ElevatedButton(
                       key: const ValueKey('registerButton'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange.shade300,
+                      ),
                       onPressed: () {
                         context.read<LoginBloc>().add(
                               NavigateRegisterScreenEvent(
@@ -122,6 +131,7 @@ class LoginView extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 18,
                               fontFamily: 'Brand Bold',
+                              color: Colors.white,
                             ),
                           ),
                         ),

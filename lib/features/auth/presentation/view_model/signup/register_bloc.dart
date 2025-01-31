@@ -3,13 +3,13 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:softwarica_student_management_bloc/core/common/snackbar/my_snackbar.dart';
-import 'package:softwarica_student_management_bloc/features/auth/domain/use_case/register_user_usecase.dart';
-import 'package:softwarica_student_management_bloc/features/auth/domain/use_case/upload_image_usecase.dart';
-import 'package:softwarica_student_management_bloc/features/batch/domain/entity/batch_entity.dart';
-import 'package:softwarica_student_management_bloc/features/batch/presentation/view_model/batch_bloc.dart';
-import 'package:softwarica_student_management_bloc/features/course/domain/entity/course_entity.dart';
-import 'package:softwarica_student_management_bloc/features/course/presentation/view_model/course_bloc.dart';
+import 'package:doko_platter/core/common/snackbar/my_snackbar.dart';
+import 'package:doko_platter/features/auth/domain/use_case/register_user_usecase.dart';
+import 'package:doko_platter/features/auth/domain/use_case/upload_image_usecase.dart';
+import 'package:doko_platter/features/batch/domain/entity/batch_entity.dart';
+import 'package:doko_platter/features/batch/presentation/view_model/batch_bloc.dart';
+import 'package:doko_platter/features/course/domain/entity/course_entity.dart';
+import 'package:doko_platter/features/course/presentation/view_model/course_bloc.dart';
 
 part 'register_event.dart';
 part 'register_state.dart';
@@ -56,8 +56,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       fname: event.fName,
       lname: event.lName,
       phone: event.phone,
-      batch: event.batch,
-      courses: _courseBloc.state.courses,
       username: event.username,
       password: event.password,
       image: state.imageName,

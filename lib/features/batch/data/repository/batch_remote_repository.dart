@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:softwarica_student_management_bloc/core/error/failure.dart';
-import 'package:softwarica_student_management_bloc/features/batch/data/data_source/remote_datasource/batch_remote_datasource.dart';
-import 'package:softwarica_student_management_bloc/features/batch/domain/entity/batch_entity.dart';
-import 'package:softwarica_student_management_bloc/features/batch/domain/repository/batch_repository.dart';
+import 'package:doko_platter/core/error/failure.dart';
+import 'package:doko_platter/features/batch/data/data_source/remote_datasource/batch_remote_datasource.dart';
+import 'package:doko_platter/features/batch/domain/entity/batch_entity.dart';
+import 'package:doko_platter/features/batch/domain/repository/batch_repository.dart';
 
 class BatchRemoteRepository implements IBatchRepository {
   final BatchRemoteDataSource remoteDataSource;

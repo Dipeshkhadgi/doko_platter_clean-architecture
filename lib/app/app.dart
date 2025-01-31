@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:softwarica_student_management_bloc/app/di/di.dart';
-import 'package:softwarica_student_management_bloc/core/theme/app_theme.dart';
-import 'package:softwarica_student_management_bloc/features/splash/presentation/view/splash_view.dart';
-import 'package:softwarica_student_management_bloc/features/splash/presentation/view_model/splash_cubit.dart';
+import 'package:doko_platter/app/di/di.dart';
+import 'package:doko_platter/core/theme/app_theme.dart';
+import 'package:doko_platter/features/splash/presentation/view/splash_view.dart';
+import 'package:doko_platter/features/splash/presentation/view_model/splash_cubit.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

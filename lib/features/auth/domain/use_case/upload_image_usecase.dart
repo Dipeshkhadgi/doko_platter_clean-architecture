@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:softwarica_student_management_bloc/app/usecase/usecase.dart';
-import 'package:softwarica_student_management_bloc/core/error/failure.dart';
-import 'package:softwarica_student_management_bloc/features/auth/domain/repository/auth_repository.dart';
+import 'package:doko_platter/app/usecase/usecase.dart';
+import 'package:doko_platter/core/error/failure.dart';
+import 'package:doko_platter/features/auth/domain/repository/auth_repository.dart';
 
 class UploadImageParams {
   final File file;

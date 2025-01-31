@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:softwarica_student_management_bloc/core/error/failure.dart';
-import 'package:softwarica_student_management_bloc/features/batch/domain/entity/batch_entity.dart';
+import 'package:doko_platter/core/error/failure.dart';
+import 'package:doko_platter/features/batch/domain/entity/batch_entity.dart';
 
 abstract interface class IBatchRepository {
   Future<Either<Failure, List<BatchEntity>>> getBatches();

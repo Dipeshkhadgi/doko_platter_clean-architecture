@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:softwarica_student_management_bloc/app/constants/api_endpoints.dart';
-import 'package:softwarica_student_management_bloc/features/auth/data/data_source/auth_data_source.dart';
-import 'package:softwarica_student_management_bloc/features/auth/domain/entity/auth_entity.dart';
+import 'package:doko_platter/app/constants/api_endpoints.dart';
+import 'package:doko_platter/features/auth/data/data_source/auth_data_source.dart';
+import 'package:doko_platter/features/auth/domain/entity/auth_entity.dart';
 
 class AuthRemoteDataSource implements IAuthDataSource {
   final Dio _dio;
@@ -22,9 +22,6 @@ class AuthRemoteDataSource implements IAuthDataSource {
           "image": student.image,
           "username": student.username,
           "password": student.password,
-          "batch": student.batch.batchId,
-          // "course": ["6489a5908dbc6d39719ec19c", "6489a5968dbc6d39719ec19e"]
-          "course": student.courses.map((e) => e.courseId).toList(),
         },
       );
 
